@@ -1,9 +1,10 @@
 import { Link } from "../components/Link";
 import { ArrowRightCircle } from "../components/icons/ArrowRightCircle";
 
-export function Start() {
+export function Welcome() {
   return (
     <main className="bg-gray-200 h-screen flex items-center justify-center flex-col">
+      {/* Add button to change language from spanish to english */}
       <img src="/modyo.png" alt="modyo" />
       <h1 className="text-5xl	max-w-3xl text-gray-900 text-center uppercase font-bold">
         Bienvenido al desafío técnico de{" "}

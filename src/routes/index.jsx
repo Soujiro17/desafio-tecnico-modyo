@@ -1,11 +1,11 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import { Start } from "../pages/Start";
+import { Welcome } from "../pages/Welcome";
 
 export function AppRoutes() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<Start />} />
+        <Route path="/" element={<Welcome />} />
         <Route path="*" element={<p>Not found</p>} />
       </Routes>
     </BrowserRouter>
