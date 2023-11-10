@@ -16,3 +16,13 @@ body {
   margin: 0;
   padding: 0;
 }
+
+.active-card {
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.card-grid {
+  grid-template-columns: repeat(5, minmax(110px, 110px));
+}

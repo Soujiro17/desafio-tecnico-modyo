@@ -7,6 +7,9 @@ export function FormGroup({
   placeholder = "",
   label = "",
   type = "text",
+  name = "",
+  inputBorderColor,
+  ...props
 }) {
   const id = useId();
 
@@ -16,11 +19,14 @@ export function FormGroup({
         {label}
       </label>
       <Input
+        {...props}
         placeholder={placeholder}
         onChange={onChange}
         value={value}
         id={id}
         type={type}
+        name={name}
+        inputBorderColor={inputBorderColor}
       />
     </div>
   );

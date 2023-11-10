@@ -1,26 +1,33 @@
+import { useNavigate } from "react-router-dom";
 import { Button } from "../components/Button";
 import { FormGroup } from "../components/FormGroup";
 import { ArrowRightCircle } from "../components/icons/ArrowRightCircle";
 import { MainLayout } from "../components/layouts/MainLayout";
 import { useLanguage } from "../hooks/useLanguage";
-import { useLocalStorage } from "../hooks/useLocalStorage";
+
+import { useUser } from "../hooks/useUser";
+import { Line } from "../components/Line";
 
 export function Welcome() {
-  const [username, setUsername] = useLocalStorage("username", "");
+  const { language } = useLanguage();
+  const { username, setUsername } = useUser();
+
+  const navigate = useNavigate();
 
   const handleUsername = (e) => setUsername(e.target.value);
 
   const onSubmit = (e) => {
     e.preventDefault();
-    alert("test");
-  };
 
-  const { language } = useLanguage();
+    if (!username) return alert(language.messages.ERROR_NOT_USERNAME);
+
+    navigate("/game");
+  };
 
   return (
     <MainLayout>
       <form
-        className="flex flex-col items-center justify-center"
+        className="flex flex-col items-center justify-center w-full"
         onSubmit={onSubmit}
       >
         {/* Add button to change language from spanish to english */}
@@ -29,7 +36,7 @@ export function Welcome() {
           {language.messages.WELCOME_MESSAGE}{" "}
           <span className="text-green-400">Modyo</span>!
         </h1>
-        <hr className="bg-gray-600 h-0.5 w-1/2 mt-4 mb-4" />
+        <Line width="1/2" />
         <FormGroup
           label={language.messages.SET_USERNAME_BUTTON}
           onChange={handleUsername}
