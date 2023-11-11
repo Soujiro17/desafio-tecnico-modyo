@@ -17,6 +17,10 @@ body {
   padding: 0;
 }
 
+.modal {
+  view-transition-name: modal-container;
+}
+
 .board__grid {
   grid-template-columns: repeat(5, minmax(110px, 110px));
 }

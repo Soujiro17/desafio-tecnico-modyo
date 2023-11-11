@@ -9,18 +9,23 @@ import { BoardCard } from "./BoardCard";
 import { BoardSkeleton } from "./BoardSkeleton";
 import { BoardLayout } from "../layouts/BoardLayout";
 import { Button } from "./Button";
+import { Winner } from "./Winner";
+import { useRef } from "react";
 
 export function Board() {
   const [openSettings, setOpenSettings] = useState(false);
   const [cardsOnBoard, setCardsOnBoard] = useState(20);
   const [firstClicked, setFirstClicked] = useState(null);
   const [secondClicked, setSecondClicked] = useState(null);
+  // const [boardCompleted, setBoardCompleted] = useState(true);
   const [badAttempts, setBadAttemps] = useState(0);
   const [goodAttempts, setGoodAttemps] = useState(0);
   const [board, setBoard] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
 
   const { language } = useLanguage();
+
+  const modalRef = useRef(null);
 
   const { data: cards, isLoading: isQueryLoading } = useQuery({
     queryFn: getCards,
@@ -45,15 +50,13 @@ export function Board() {
 
   const checkCards = () => {
     if (firstClicked.value === secondClicked.value) {
-      console.log(firstClicked, secondClicked);
+      turnCards([firstClicked.id, secondClicked.id]);
       setGoodAttemps((prev) => prev + 1);
-      turnCard(firstClicked.id);
-      turnCard(secondClicked.id);
     } else {
       setBadAttemps((prev) => prev + 1);
     }
 
-    clearCards();
+    clearSelectedCards();
   };
 
   const generateBoard = useCallback(() => {
@@ -72,18 +75,21 @@ export function Board() {
 
     setGoodAttemps(0);
     setBadAttemps(0);
+    clearSelectedCards();
     setBoard(shuffle(boardArray.flat()));
   }, [cards, cardsOnBoard]);
 
-  const turnCard = (id) => {
+  const turnCards = (ids) => {
     setBoard((cards) =>
       cards.map((card) =>
-        card.id === id ? { ...card, hidden: false, completed: true } : card
+        ids.includes(card.id)
+          ? { ...card, hidden: false, completed: true }
+          : card
       )
     );
   };
 
-  const clearCards = () => {
+  const clearSelectedCards = () => {
     setFirstClicked(null);
     setSecondClicked(null);
   };
@@ -95,15 +101,16 @@ export function Board() {
         setIsLoading(false);
       }, 2000);
     }
-
-    // When the component is dismounted and this code is uncommented,
-    // the "isLoading" var will be always true, because setIsLoading
-    // will not be executed.
-    // return () => {
-    //   console.log("cleaning");
-    //   clearTimeout(timeout);
-    // };
   }, [isQueryLoading]);
+
+  useEffect(() => {
+    if (goodAttempts === Number(cardsOnBoard)) {
+      // setBoardCompleted(true);
+      document.startViewTransition(() => {
+        modalRef.current.style.display = "flex";
+      });
+    }
+  }, [goodAttempts, cardsOnBoard]);
 
   useEffect(() => {
     if (cards) {
@@ -121,9 +128,17 @@ export function Board() {
 
   return (
     <div className="px-2 pb-5 w-full">
-      <Button className="bg-gray-300 w-full" onClick={handleChangeSettings}>
-        {language.messages.BOARD_SETTINGS_BUTTON}
-      </Button>
+      <section className="text-center">
+        <Button className="w-full bg-gray-300" onClick={handleChangeSettings}>
+          {language.messages.BOARD_SETTINGS_BUTTON}
+        </Button>
+        <Button
+          onClick={generateBoard}
+          className="mt-5 mx-auto bg-blue-500 border-blue-400"
+        >
+          {language.messages.BOARD_START_NEWGAME_MESSAGE}
+        </Button>
+      </section>
       <div
         className="overflow-hidden transition-all duration-200"
         style={
@@ -177,6 +192,11 @@ export function Board() {
           })}
         </BoardLayout>
       )}
+      <Winner
+        ref={modalRef}
+        badAttempts={badAttempts}
+        goodAttempts={goodAttempts}
+      />
     </div>
   );
 }

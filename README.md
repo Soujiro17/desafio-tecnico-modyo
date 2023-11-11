@@ -2,7 +2,7 @@
 
 ## Presentación
 
-Estimados, este código está hecho para evaluar mis conocimientos como desarrollador frontend. Mi nombre es Vicente Reyes, tengo 23 años, soy estudiante de Ingeniería Civil en Informática de la Universidad de Valparaíso, Chile.
+Estimados, este código está hecho para evaluar mis conocimientos como desarrollador frontend. Mi nombre es [Vicente Reyes Cáceres](https://www.linkedin.com/in/vicente-reyes-caceres/), tengo 23 años y soy estudiante de Ingeniería Civil en Informática de la Universidad de Valparaíso, Chile.
 
 ## Preparación
 
@@ -75,7 +75,7 @@ Si bien todo el código lo hice yo, se me presentaron diversas dificultades:
 
 - [x] Las cartas que el usuario acierte deben quedar boca arriba mientras que las cartas de error deben volver a quedar boca abajo.
 
-- [ ] Una vez que el usuario logre adivinar todas las cartas, se debe mostrar un mensaje de felicitación con el nombre del usuario
+- [x] Una vez que el usuario logre adivinar todas las cartas, se debe mostrar un mensaje de felicitación con el nombre del usuario
 
 ### Consideraciones
 
