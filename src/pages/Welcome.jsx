@@ -7,7 +7,7 @@ import { useLanguage } from "../hooks/useLanguage";
 import { useUser } from "../hooks/useUser";
 import { Line } from "../components/Line";
 
-export function Welcome() {
+function Welcome() {
   const { language } = useLanguage();
   const { username, setUsername } = useUser();
 
@@ -24,7 +24,7 @@ export function Welcome() {
   };
 
   return (
-    <MainLayout>
+    <MainLayout logoWidth={300} logoHeight={200}>
       <form
         className="flex flex-col items-center justify-center w-full"
         onSubmit={onSubmit}
@@ -52,3 +52,5 @@ export function Welcome() {
     </MainLayout>
   );
 }
+
+export default Welcome;
