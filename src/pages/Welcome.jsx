@@ -2,7 +2,7 @@ import { useNavigate } from "react-router-dom";
 import { Button } from "../components/Button";
 import { FormGroup } from "../components/FormGroup";
 import { ArrowRightCircle } from "../components/icons/ArrowRightCircle";
-import { MainLayout } from "../components/layouts/MainLayout";
+import { MainLayout } from "../layouts/MainLayout";
 import { useLanguage } from "../hooks/useLanguage";
 import { useUser } from "../hooks/useUser";
 import { Line } from "../components/Line";

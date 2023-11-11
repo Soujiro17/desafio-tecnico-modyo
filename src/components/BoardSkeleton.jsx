@@ -1,5 +1,5 @@
 import { BoardCard } from "./BoardCard";
-import { BoardLayout } from "./layouts/BoardLayout";
+import { BoardLayout } from "../layouts/BoardLayout";
 
 export function BoardSkeleton() {
   return (

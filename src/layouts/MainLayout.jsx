@@ -1,4 +1,4 @@
-import { LogoModyo } from "../LogoModyo";
+import { LogoModyo } from "../components/LogoModyo";
 
 export function MainLayout({ children, logoHeight, logoWidth }) {
   return (

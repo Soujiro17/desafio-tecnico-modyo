@@ -17,17 +17,11 @@ body {
   padding: 0;
 }
 
-.active-card {
-  /* background-position: center; */
-  /* background-repeat: no-repeat; */
-  background-size: cover;
-}
-
-.card-grid {
+.board__grid {
   grid-template-columns: repeat(5, minmax(110px, 110px));
 }
 
-.card-loading {
+.board__card--loading {
   animation: breathing 1s infinite;
 }
 

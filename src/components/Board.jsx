@@ -7,7 +7,7 @@ import { shuffle } from "../lib/shuffle";
 import { Line } from "./Line";
 import { BoardCard } from "./BoardCard";
 import { BoardSkeleton } from "./BoardSkeleton";
-import { BoardLayout } from "./layouts/BoardLayout";
+import { BoardLayout } from "../layouts/BoardLayout";
 import { Button } from "./Button";
 
 export function Board() {

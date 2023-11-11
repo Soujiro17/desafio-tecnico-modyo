@@ -1,6 +1,6 @@
 export function BoardCard({ id, isActive, image, onClick, loading = false }) {
   const loadingClass = loading
-    ? "bg-gray-300 card-loading"
+    ? "bg-gray-300 board__card--loading"
     : "bg-blue-950 hover:opacity-70 cursor-pointer";
 
   const activeStyle = isActive
