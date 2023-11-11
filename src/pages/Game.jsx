@@ -4,8 +4,8 @@ import { Board } from "../components/Board";
 
 export function Game() {
   return (
-    <MainLayout>
-      <Card className="px-2 overflow-auto">
+    <MainLayout logoHeight={100} logoWidth={200}>
+      <Card className="w-full md:w-auto px-2 overflow-auto">
         <Board />
       </Card>
     </MainLayout>

@@ -4,7 +4,6 @@ import { FormGroup } from "../components/FormGroup";
 import { ArrowRightCircle } from "../components/icons/ArrowRightCircle";
 import { MainLayout } from "../components/layouts/MainLayout";
 import { useLanguage } from "../hooks/useLanguage";
-
 import { useUser } from "../hooks/useUser";
 import { Line } from "../components/Line";
 
@@ -31,7 +30,6 @@ export function Welcome() {
         onSubmit={onSubmit}
       >
         {/* Add button to change language from spanish to english */}
-        <img src="/modyo.png" alt="modyo" />
         <h1 className="text-5xl	max-w-3xl text-gray-900 text-center uppercase font-bold">
           {language.messages.WELCOME_MESSAGE}{" "}
           <span className="text-green-400">Modyo</span>!

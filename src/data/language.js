@@ -8,6 +8,7 @@ export const ESLanguage = {
     BOARD_CARD_LIMIT_MESSAGE: "Cantidad de cartas a jugar",
     BOARD_GOOD_TRIES: "Buenas",
     BOARD_BAD_TRIES: "Malas",
+    BOARD_SETTINGS_BUTTON: "Configuración de tablero",
   },
 };
 
@@ -21,5 +22,6 @@ export const ENLanguage = {
     BOARD_CARD_LIMIT_MESSAGE: "Number of cards to play",
     BOARD_GOOD_TRIES: "Buenas",
     BOARD_BAD_TRIES: "Malas",
+    BOARD_SETTINGS_BUTTON: "Board Settings",
   },
 };

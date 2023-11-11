@@ -18,11 +18,27 @@ body {
 }
 
 .active-card {
-  background-position: center;
-  background-repeat: no-repeat;
+  /* background-position: center; */
+  /* background-repeat: no-repeat; */
   background-size: cover;
 }
 
 .card-grid {
   grid-template-columns: repeat(5, minmax(110px, 110px));
+}
+
+.card-loading {
+  animation: breathing 1s infinite;
+}
+
+@keyframes breathing {
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+  100% {
+    opacity: 1;
+  }
 }

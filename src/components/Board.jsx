@@ -6,9 +6,13 @@ import { getCards } from "../lib/cards";
 import { shuffle } from "../lib/shuffle";
 import { Line } from "./Line";
 import { BoardCard } from "./BoardCard";
+import { BoardSkeleton } from "./BoardSkeleton";
+import { BoardLayout } from "./layouts/BoardLayout";
+import { Button } from "./Button";
 
 export function Board() {
-  const [cardsOnBoard, setCardsOnBoard] = useState(5);
+  const [openSettings, setOpenSettings] = useState(false);
+  const [cardsOnBoard, setCardsOnBoard] = useState(20);
   const [firstClicked, setFirstClicked] = useState(null);
   const [secondClicked, setSecondClicked] = useState(null);
   const [badAttempts, setBadAttemps] = useState(0);
@@ -23,7 +27,13 @@ export function Board() {
     queryKey: ["cards"],
   });
 
-  const handleCardsOnBoard = (e) => setCardsOnBoard(e.target.value);
+  const handleChangeSettings = () => setOpenSettings((prev) => !prev);
+
+  const handleCardsOnBoard = (e) => {
+    if (e.target.value < 3 || e.target.value > 20) return;
+
+    setCardsOnBoard(e.target.value);
+  };
 
   const handleClicked = (value) => {
     if (firstClicked) {
@@ -35,6 +45,7 @@ export function Board() {
 
   const checkCards = () => {
     if (firstClicked.value === secondClicked.value) {
+      console.log(firstClicked, secondClicked);
       setGoodAttemps((prev) => prev + 1);
       turnCard(firstClicked.id);
       turnCard(secondClicked.id);
@@ -108,18 +119,29 @@ export function Board() {
     }
   }, [firstClicked, secondClicked]);
 
-  if (isLoading) return <p>Loading...</p>;
-
   return (
-    <div className="px-2">
-      <FormGroup
-        inputBorderColor="blue"
-        type="number"
-        min={3}
-        onChange={handleCardsOnBoard}
-        value={cardsOnBoard}
-        label={language.messages.BOARD_CARD_LIMIT_MESSAGE}
-      />
+    <div className="px-2 pb-5 w-full">
+      <Button className="bg-gray-300 w-full" onClick={handleChangeSettings}>
+        {language.messages.BOARD_SETTINGS_BUTTON}
+      </Button>
+      <div
+        className="overflow-hidden transition-all duration-200"
+        style={
+          openSettings
+            ? { maxHeight: "350px", padding: "1rem 0" }
+            : { maxHeight: "0" }
+        }
+      >
+        <FormGroup
+          inputBorderColor="blue"
+          type="number"
+          min={3}
+          max={20}
+          onChange={handleCardsOnBoard}
+          value={cardsOnBoard}
+          label={language.messages.BOARD_CARD_LIMIT_MESSAGE}
+        />
+      </div>
       <Line />
       <div className="flex items-center justify-center w-full gap-4 mb-6">
         <p className="text-xl">
@@ -135,22 +157,26 @@ export function Board() {
           {goodAttempts}
         </p>
       </div>
-      <section className={`grid card-grid justify-center gap-4 overflow-auto`}>
-        {board.map((card) => {
-          const isActive =
-            firstClicked === card || secondClicked === card || !card.hidden;
+      {isLoading ? (
+        <BoardSkeleton />
+      ) : (
+        <BoardLayout>
+          {board.map((card) => {
+            const isActive =
+              firstClicked === card || secondClicked === card || !card.hidden;
 
-          return (
-            <BoardCard
-              key={card.id}
-              id={card.id}
-              image={card.image}
-              isActive={isActive}
-              onClick={card.completed ? () => {} : () => handleClicked(card)}
-            />
-          );
-        })}
-      </section>
+            return (
+              <BoardCard
+                key={card.id}
+                id={card.id}
+                image={card.image}
+                isActive={isActive}
+                onClick={card.completed ? () => {} : () => handleClicked(card)}
+              />
+            );
+          })}
+        </BoardLayout>
+      )}
     </div>
   );
 }
