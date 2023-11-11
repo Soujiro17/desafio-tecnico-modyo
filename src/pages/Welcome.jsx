@@ -1,7 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import { Button } from "../components/Button";
 import { FormGroup } from "../components/FormGroup";
-import { ArrowRightCircle } from "../components/icons/ArrowRightCircle";
+import { ArrowRightCircleIcon } from "../components/icons/ArrowRightCircle";
 import { MainLayout } from "../layouts/MainLayout";
 import { useLanguage } from "../hooks/useLanguage";
 import { useUser } from "../hooks/useUser";
@@ -39,14 +39,16 @@ function Welcome() {
           label={language.messages.SET_USERNAME_BUTTON}
           onChange={handleUsername}
           value={username}
+          required
         />
         <Button
           type="submit"
           className="mt-5 w-48 uppercase"
-          title="Comenzar - Start"
+          aria-label={language.messages.WELCOME_BUTTON_MESSAGE}
+          title={language.messages.WELCOME_BUTTON_MESSAGE}
         >
           {language.messages.WELCOME_BUTTON_MESSAGE}{" "}
-          <ArrowRightCircle className="inline m-auto -translate-y-0.5" />
+          <ArrowRightCircleIcon className="inline m-auto -translate-y-0.5" />
         </Button>
       </form>
     </MainLayout>

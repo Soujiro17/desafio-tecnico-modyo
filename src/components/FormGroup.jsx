@@ -9,14 +9,15 @@ export function FormGroup({
   type = "text",
   name = "",
   inputBorderColor,
+  required = false,
   ...props
 }) {
   const id = useId();
 
   return (
     <div className="flex flex-col">
-      <label htmlFor={id} className="text-2xl mb-2">
-        {label}
+      <label htmlFor={id} className="text-lg mb-2">
+        {label} {required && <span className="text-red-500 font-bold">*</span>}
       </label>
       <Input
         {...props}
@@ -26,6 +27,8 @@ export function FormGroup({
         id={id}
         type={type}
         name={name}
+        required={required}
+        aria-required={required}
         inputBorderColor={inputBorderColor}
       />
     </div>

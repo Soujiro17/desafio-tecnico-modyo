@@ -1,4 +1,12 @@
-export function BoardCard({ id, isActive, image, onClick, loading = false }) {
+export function BoardCard({
+  id,
+  isActive,
+  image,
+  onClick,
+  loading = false,
+  position,
+  completed = false,
+}) {
   const loadingClass = loading
     ? "bg-gray-300 board__card--loading"
     : "bg-blue-950 hover:opacity-70 cursor-pointer";
@@ -15,6 +23,10 @@ export function BoardCard({ id, isActive, image, onClick, loading = false }) {
     <div
       key={id}
       onClick={onClick}
+      role="button"
+      aria-label={`Card ${isActive ? "selected" : ""} ${
+        completed ? "completed" : "hidden"
+      } ${position}`}
       className={`h-full min-h-[110px] min-w-[100px] w-full rounded-md transition-all duration-200 text-white text-center flex items-center justify-center text-7xl ${loadingClass}`}
       style={activeStyle}
     >

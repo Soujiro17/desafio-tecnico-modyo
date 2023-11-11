@@ -54,6 +54,7 @@ Si bien todo el código lo hice yo, se me presentaron diversas dificultades:
 - Poco o nada conocimiento de Tailwind: En algún momento como desarrollador quería crear algo con Tailwind para aprender a utilizar este framework, pero siempre quedó en standby. Debido a esto, tuve que acceder a la documentación de las clases (tipo Cheat Sheet) para seleccionar las que no conocía.
 - Rotación 3D: Al momento de leer el desafío, se me vino a la mente inmediatamente esa animación de tipo "voltear" al clickear una carta. Si bien conocía esta propiedad de CSS, nunca la había utilizado, por lo que tuve que buscar información acerca de ella en MDN Web Docs.
 - Shuffle.js: Utilicé un código de StackOverflow que se encargaba de desordenar de manera aleatoria el array de las imágenes. El link del post se puede acceder desde [aquí](https://stackoverflow.com/questions/2450954/how-to-randomize-shuffle-a-javascript-array)
+- Accesibilidad: Me resultó dificultoso el hecho de agregar accesibilidad ya que no estoy acostumbrado a hacerlo. Tuve que leer acerca de eso en [W3S](https://www.w3schools.com/accessibility/).
 
 ## Task List
 
@@ -91,8 +92,8 @@ Si bien todo el código lo hice yo, se me presentaron diversas dificultades:
 
 - [x] El diseño se debe adaptar a los distintos tipos de dispositivos (diseño responsivo).
 
-- [ ] Los test no son requeridos pero suman puntos si los agrega correctamente.
+- [ ] ~~Los test no son requeridos pero suman puntos si los agrega correctamente.~~
 
 - [x] Proponer un diseño de interfaz para la vista. Más abajo se muestra una imagen con una estructura de referencia, pero darle un estilo más personalizado sumará puntos.
 
-- [ ] Preocupación por el performance y accesibilidad de la aplicación.
+- [x] Preocupación por el performance y accesibilidad de la aplicación.

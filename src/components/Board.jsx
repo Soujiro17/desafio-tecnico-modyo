@@ -11,6 +11,8 @@ import { BoardLayout } from "../layouts/BoardLayout";
 import { Button } from "./Button";
 import { Winner } from "./Winner";
 import { useRef } from "react";
+import { GearIcon } from "./icons/Gear";
+import { ControllerIcon } from "./icons/Controller";
 
 export function Board() {
   const [openSettings, setOpenSettings] = useState(false);
@@ -128,19 +130,34 @@ export function Board() {
 
   return (
     <div className="px-2 pb-5 w-full">
-      <section className="text-center">
-        <Button className="w-full bg-gray-300" onClick={handleChangeSettings}>
-          {language.messages.BOARD_SETTINGS_BUTTON}
-        </Button>
+      <h1 className="text-center my-5 text-2xl font-bold uppercase break-words">
+        Card Game for Concentration/Memory
+      </h1>
+      <section className="text-center flex gap-3">
         <Button
           onClick={generateBoard}
-          className="mt-5 mx-auto bg-blue-500 border-blue-400"
+          aria-label={language.messages.BOARD_START_NEWGAME_MESSAGE}
+          title={language.messages.BOARD_START_NEWGAME_MESSAGE}
+          className="w-full mx-auto bg-blue-500 border-blue-400"
         >
+          <ControllerIcon className="inline mr-2" />{" "}
           {language.messages.BOARD_START_NEWGAME_MESSAGE}
+        </Button>
+        <Button
+          aria-controls="settings"
+          aria-expanded={openSettings}
+          title={language.messages.BOARD_SETTINGS_BUTTON}
+          aria-label={language.messages.BOARD_SETTINGS_BUTTON}
+          className="bg-gray-300"
+          onClick={handleChangeSettings}
+        >
+          <GearIcon />
         </Button>
       </section>
       <div
+        id="settings"
         className="overflow-hidden transition-all duration-200"
+        aria-hidden={!openSettings}
         style={
           openSettings
             ? { maxHeight: "350px", padding: "1rem 0" }
@@ -176,7 +193,7 @@ export function Board() {
         <BoardSkeleton />
       ) : (
         <BoardLayout>
-          {board.map((card) => {
+          {board.map((card, index) => {
             const isActive =
               firstClicked === card || secondClicked === card || !card.hidden;
 
@@ -186,6 +203,8 @@ export function Board() {
                 id={card.id}
                 image={card.image}
                 isActive={isActive}
+                position={index + 1}
+                completed={card.completed}
                 onClick={card.completed ? () => {} : () => handleClicked(card)}
               />
             );

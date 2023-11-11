@@ -1,4 +1,4 @@
-export function ArrowRightCircle({
+export function ArrowRightCircleIcon({
   width = "16",
   height = "16",
   color = "currentColor",
